@@ -8,7 +8,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        signUp(data: SignUpData!): SignUpMutationResponse
+        signIn(data: SignInData!): SignInMutationResponse!
+        signUp(data: SignUpData!): SignUpMutationResponse!
     }
 
     type User {
@@ -24,8 +25,21 @@ const typeDefs = gql`
         avatar: UploadFile
         password: String!
     }
+    
+    input SignInData {
+        email: String!
+        password: String!
+    }
 
     type SignUpMutationResponse {
+        code: String!
+        success: Boolean!
+        message: String!
+        token: String
+        user: User
+    }
+    
+    type SignInMutationResponse {
         code: String!
         success: Boolean!
         message: String!
