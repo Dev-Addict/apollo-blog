@@ -1,0 +1,29 @@
+{
+  "name": "apollo-blog",
+  "version": "1.0.0",
+  "description": "creating a graphql api using apollo-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev-Addict/apollo-blog.git"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "apollo-server",
+    "blog"
+  ],
+  "author": "DevAddict (Aria Azadi Pour)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dev-Addict/apollo-blog/issues"
+  },
+  "homepage": "https://github.com/Dev-Addict/apollo-blog#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "graphql": "^15.4.0"
+  }
+}
