@@ -12,8 +12,9 @@ const typeDefs = gql`
     type Mutation {
         signIn(data: SignInData!): AuthMutationResponse!
         signUp(data: SignUpData!): AuthMutationResponse!
-        updateUser(data: UpdateUserInput): UpdateUserMutationResponse!
+        updateUser(data: UpdateUserInput!): UpdateUserMutationResponse!
         deleteUser(id: ID!): DeleteUserMutationResponse!
+        createPost(data: CreatePostInput!): CreatePostMutationResponse
     }
 
     type User {
@@ -23,12 +24,13 @@ const typeDefs = gql`
         avatar: String!
         posts: [Post!]!
     }
-     type Post {
-         id: ID!
-         title: String!
-         body: String!
-         author: User!
-     }
+    
+    type Post {
+        id: ID!
+        title: String!
+        body: String!
+        author: User!
+    }
 
     input SignUpData {
         name: String!
@@ -46,9 +48,14 @@ const typeDefs = gql`
         name: String
         avatar: UploadFile
     }
+    
+    input CreatePostInput {
+        title: String!
+        body: String!
+    }
 
     type AuthMutationResponse {
-        code: String!
+        code: Int!
         success: Boolean!
         message: String!
         token: String
@@ -56,16 +63,23 @@ const typeDefs = gql`
     }
 
     type UpdateUserMutationResponse {
-        code: String!
+        code: Int!
         success: Boolean!
         message: String!
         user: User
     }
     
     type DeleteUserMutationResponse {
-        code: String!
+        code: Int!
         success: Boolean!
         message: String!
+    }
+    
+    type CreatePostMutationResponse {
+        code: Int!
+        success: Boolean!
+        message: String!
+        post: Post
     }
 `;
 
