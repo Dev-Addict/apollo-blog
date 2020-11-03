@@ -15,7 +15,8 @@ const typeDefs = gql`
         signUp(data: SignUpData!): AuthMutationResponse!
         updateUser(data: UpdateUserInput!): UpdateUserMutationResponse!
         deleteUser(id: ID!): DeleteUserMutationResponse!
-        createPost(data: CreatePostInput!): CreatePostMutationResponse!
+        createPost(data: CreatePostInput!): PostMutationResponse!
+        updatePost(data: UpdatePostInput!, id: ID!): PostMutationResponse!
     }
 
     type User {
@@ -54,6 +55,11 @@ const typeDefs = gql`
         title: String!
         body: String!
     }
+    
+    input UpdatePostInput {
+        title: String
+        body: String
+    }
 
     type AuthMutationResponse {
         code: Int!
@@ -76,7 +82,7 @@ const typeDefs = gql`
         message: String!
     }
     
-    type CreatePostMutationResponse {
+    type PostMutationResponse {
         code: Int!
         success: Boolean!
         message: String!

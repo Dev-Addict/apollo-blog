@@ -3,13 +3,15 @@ import signIn from './signIn';
 import updateUser from "./updateUser";
 import deleteUser from "./deleteUser";
 import createPost from "./createPost";
+import updatePost from "./updatePost";
 
 const Mutation = {
     signUp,
     signIn,
     updateUser,
     deleteUser,
-    createPost
+    createPost,
+    updatePost
 };
 
 export default Mutation;
