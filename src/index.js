@@ -9,11 +9,11 @@ import {ApolloServer, gql} from 'apollo-server';
 import mongoose from 'mongoose';
 import logger from 'node-color-log';
 
+import typeDefs from "./typeDefs";
 import resolvers from './resolvers';
-import schema from './schema.graphql';
 
 const server = new ApolloServer({
-    typeDefs: gql(schema),
+    typeDefs,
     resolvers
 });
 

@@ -1,7 +1,12 @@
+import {GraphQLUpload} from 'graphql-upload';
+
 import Query from "./queries";
+import Mutation from "./mutations";
 
 const resolvers = {
-    Query
+    Query,
+    Mutation,
+    UploadFile: GraphQLUpload
 };
 
 export default resolvers;

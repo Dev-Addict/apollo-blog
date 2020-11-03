@@ -27,6 +27,7 @@
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
+    "graphql-upload": "^11.0.0",
     "mongoose": "^5.10.11",
     "node-color-log": "^5.2.0"
   },
@@ -34,7 +35,6 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "babel-cli": "^6.26.0",
-    "babel-plugin-import-graphql": "^2.7.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0"
   }

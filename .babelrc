@@ -3,7 +3,6 @@
     "env"
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "import-graphql"
+    "transform-object-rest-spread"
   ]
 }
