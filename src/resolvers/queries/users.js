@@ -1,7 +1,5 @@
 import User from "../../models/User";
 
-const users = async (parentValues, args, context, info) => {
-    return await User.find()
-};
+const users = (parentValues, args, context, info) => User.find();
 
 export default users;
