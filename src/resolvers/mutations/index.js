@@ -4,6 +4,7 @@ import updateUser from "./updateUser";
 import deleteUser from "./deleteUser";
 import createPost from "./createPost";
 import updatePost from "./updatePost";
+import deletePost from "./deletePost";
 
 const Mutation = {
     signUp,
@@ -11,7 +12,8 @@ const Mutation = {
     updateUser,
     deleteUser,
     createPost,
-    updatePost
+    updatePost,
+    deletePost
 };
 
 export default Mutation;
