@@ -7,6 +7,7 @@ const typeDefs = gql`
         users: [User!]!
         user(id: ID!): User
         posts: [Post!]!
+        post(id: ID!): Post
     }
 
     type Mutation {
@@ -14,7 +15,7 @@ const typeDefs = gql`
         signUp(data: SignUpData!): AuthMutationResponse!
         updateUser(data: UpdateUserInput!): UpdateUserMutationResponse!
         deleteUser(id: ID!): DeleteUserMutationResponse!
-        createPost(data: CreatePostInput!): CreatePostMutationResponse
+        createPost(data: CreatePostInput!): CreatePostMutationResponse!
     }
 
     type User {
