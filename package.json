@@ -2,9 +2,9 @@
   "name": "apollo-blog",
   "version": "1.0.0",
   "description": "creating a graphql api using apollo-server",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,15 @@
   "homepage": "https://github.com/Dev-Addict/apollo-blog#readme",
   "dependencies": {
     "apollo-server": "^2.19.0",
-    "graphql": "^15.4.0"
+    "graphql": "^15.4.0",
+    "node-color-log": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-import-graphql": "^2.7.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
