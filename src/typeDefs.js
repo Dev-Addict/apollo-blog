@@ -20,7 +20,14 @@ const typeDefs = gql`
         name: String!
         email: String!
         avatar: String!
+        posts: [Post!]!
     }
+     type Post {
+         id: ID!
+         title: String!
+         body: String!
+         author: User!
+     }
 
     input SignUpData {
         name: String!
