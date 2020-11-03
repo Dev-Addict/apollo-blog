@@ -34,5 +34,5 @@ mongoose.connect(DB, {
     useFindAndModify: false,
     useUnifiedTopology: true
 }).then(() => {
-    logger.info('🍃 Connected to database successfully.')
+    logger.info('🍃 Connected to database successfully.');
 });

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Dev-Addict/apollo-blog#readme",
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
     "mongoose": "^5.10.11",
