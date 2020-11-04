@@ -5,12 +5,15 @@ config({
     path: join(__dirname, '../config.env')
 });
 
-import {ApolloServer, gql} from 'apollo-server';
+import express from 'express';
+import {ApolloServer} from 'apollo-server-express';
 import mongoose from 'mongoose';
 import logger from 'node-color-log';
 
 import typeDefs from "./typeDefs";
 import resolvers from './resolvers';
+
+const app = express();
 
 const server = new ApolloServer({
     typeDefs,
@@ -20,11 +23,20 @@ const server = new ApolloServer({
     }
 });
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Methods", "*");
+    next();
+});
+
+server.applyMiddleware({app});
+
 const Port = process.env.PORT || 4000;
-server.listen({
+app.listen({
     port: Port
-}).then(({url}) => {
-    logger.info(`🚀 server is running ar ${url}.`);
+}, () => {
+    logger.info(`🚀 server is running at http://localhost:${Port}${server.graphqlPath}.`);
 });
 
 const DB = (process.env.DATABASE_URL || '')
