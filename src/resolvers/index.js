@@ -1,3 +1,4 @@
+import GraphQLJSON from "graphql-type-json";
 import {GraphQLUpload} from 'graphql-upload';
 
 import Query from "./queries";
@@ -10,6 +11,7 @@ const resolvers = {
     Mutation,
     User,
     Post,
+    JSON: GraphQLJSON,
     UploadFile: GraphQLUpload
 };
 

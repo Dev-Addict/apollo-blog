@@ -2,11 +2,12 @@ import {gql} from 'apollo-server';
 
 const typeDefs = gql`
     scalar UploadFile
+    scalar JSON
     
     type Query {
-        users: [User!]!
+        users(page: Int, limit: Int, sort: String, filter: JSON): UsersQueryResponse!
         user(id: ID!): User
-        posts: [Post!]!
+        posts(page: Int, limit: Int, sort: String, filter: JSON): PostsQueryResponse!
         post(id: ID!): Post
     }
 
@@ -60,6 +61,20 @@ const typeDefs = gql`
     input UpdatePostInput {
         title: String
         body: String
+    }
+    
+    type UsersQueryResponse {
+        results: Int!
+        page: Int!
+        limit: Int!
+        docs: [User!]!
+    }
+
+    type PostsQueryResponse {
+        results: Int!
+        page: Int!
+        limit: Int!
+        docs: [Post!]!
     }
 
     type AuthMutationResponse {
