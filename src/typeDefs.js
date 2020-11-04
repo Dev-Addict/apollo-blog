@@ -3,6 +3,7 @@ import {gql} from 'apollo-server';
 const typeDefs = gql`
     scalar UploadFile
     scalar JSON
+    scalar Email
     
     type Query {
         users(page: Int, limit: Int, sort: String, filter: JSON): UsersQueryResponse!
@@ -24,7 +25,7 @@ const typeDefs = gql`
     type User {
         id: ID!
         name: String!
-        email: String!
+        email: Email!
         avatar: String!
         posts: [Post!]!
     }
@@ -38,13 +39,13 @@ const typeDefs = gql`
 
     input SignUpData {
         name: String!
-        email: String!
+        email: Email!
         avatar: UploadFile
         password: String!
     }
     
     input SignInData {
-        email: String!
+        email: Email!
         password: String!
     }
     
