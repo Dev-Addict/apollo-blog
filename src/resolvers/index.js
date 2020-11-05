@@ -5,6 +5,7 @@ import Query from "./queries";
 import Mutation from "./mutations";
 import User from "./models/user";
 import Post from "./models/post";
+import Email from "./scalars/Email";
 
 const resolvers = {
     Query,
@@ -12,7 +13,8 @@ const resolvers = {
     User,
     Post,
     JSON: GraphQLJSON,
-    UploadFile: GraphQLUpload
+    UploadFile: GraphQLUpload,
+    Email
 };
 
 export default resolvers;

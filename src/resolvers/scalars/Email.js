@@ -15,3 +15,5 @@ const Email = new GraphQLScalarType({
         return null;
     }
 });
+
+export default Email;
