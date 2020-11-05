@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import signToken from "../../utils/signToken";
+import User from "../../../models/User";
+import signToken from "../../../utils/signToken";
 
 const signIn = async (parentValues, {data: {email, password}}, context, info) => {
     const user = await User.findOne({email}).select('+password');

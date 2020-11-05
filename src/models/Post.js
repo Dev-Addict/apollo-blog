@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
     },
     uri: {
         type: String,
-        required: [true, 'you should provide url for your post']
+        required: [true, 'you should provide url for your posts']
     },
     cover: {
         type: String,
@@ -24,7 +24,7 @@ const postSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
-        required: [true, 'post must have an author']
+        required: [true, 'posts must have an author']
     }
 });
 

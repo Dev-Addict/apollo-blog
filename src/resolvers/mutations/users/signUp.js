@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import signToken from "../../utils/signToken";
+import User from "../../../models/User";
+import signToken from "../../../utils/signToken";
 
 const signUp = async (parentValues, {data: {name, email, username, avatar, password, bio}}, context, info) => {
     const user = await User.create({name, email, password, username, bio})
@@ -17,7 +17,7 @@ const signUp = async (parentValues, {data: {name, email, username, avatar, passw
     return {
         code: 201,
         success: true,
-        message: 'user created.',
+        message: 'users created.',
         token,
         user
     };

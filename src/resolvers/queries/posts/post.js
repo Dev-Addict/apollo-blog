@@ -1,4 +1,4 @@
-import Post from "../../models/Post";
+import Post from "../../../models/Post";
 
 const post = async (parentValues, {id}, context, info) => {
     return await Post.findById(id);

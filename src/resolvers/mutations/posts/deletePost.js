@@ -1,5 +1,5 @@
-import Post from "../../models/Post";
-import protect from "../../utils/auth/protect";
+import Post from "../../../models/Post";
+import protect from "../../../utils/auth/protect";
 
 const deletePost = async (parentValues, {id}, {req}, info) => {
     const {_id: author} = await protect(req);
@@ -9,7 +9,7 @@ const deletePost = async (parentValues, {id}, {req}, info) => {
     return {
         code: 204,
         success: true,
-        message: 'post deleted.'
+        message: 'posts deleted.'
     };
 };
 

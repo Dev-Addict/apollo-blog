@@ -1,5 +1,5 @@
-import Post from "../../models/Post";
-import protect from "../../utils/auth/protect";
+import Post from "../../../models/Post";
+import protect from "../../../utils/auth/protect";
 
 const createPost = async (parentValues, {data: {title, body, published, uri, cover}}, {req}, info) => {
     const {_id: author} = await protect(req);
@@ -9,7 +9,7 @@ const createPost = async (parentValues, {data: {title, body, published, uri, cov
     return {
         code: 201,
         success: true,
-        message: 'post created',
+        message: 'posts created',
         post
     };
 };

@@ -1,10 +1,10 @@
-import signUp from "./signUp";
-import signIn from './signIn';
-import updateUser from "./updateUser";
-import deleteUser from "./deleteUser";
-import createPost from "./createPost";
-import updatePost from "./updatePost";
-import deletePost from "./deletePost";
+import signUp from "./users/signUp";
+import signIn from './users/signIn';
+import updateUser from "./users/updateUser";
+import deleteUser from "./users/deleteUser";
+import createPost from "./posts/createPost";
+import updatePost from "./posts/updatePost";
+import deletePost from "./posts/deletePost";
 
 const Mutation = {
     signUp,

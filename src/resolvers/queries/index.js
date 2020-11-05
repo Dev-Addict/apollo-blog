@@ -1,7 +1,7 @@
-import users from "./users";
-import user from "./user";
-import posts from "./posts";
-import post from "./post";
+import users from "./users/users";
+import user from "./users/user";
+import posts from "./posts/posts";
+import post from "./posts/post";
 
 const Query = {
     users,

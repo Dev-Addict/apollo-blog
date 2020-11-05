@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import protect from "../../utils/auth/protect";
+import User from "../../../models/User";
+import protect from "../../../utils/auth/protect";
 
 const updateUser = async (parentValues, {data}, {req}, info) => {
     const {_id} = await protect(req);
@@ -17,7 +17,7 @@ const updateUser = async (parentValues, {data}, {req}, info) => {
     return {
         code: 202,
         success: true,
-        message: 'user updated',
+        message: 'users updated',
         user
     };
 };

@@ -1,6 +1,6 @@
-import User from "../../models/User";
-import Post from "../../models/Post";
-import protect from "../../utils/auth/protect";
+import User from "../../../models/User";
+import Post from "../../../models/Post";
+import protect from "../../../utils/auth/protect";
 
 const deleteUser = async (parentValues, args, {req}, info) => {
     const {_id} = await protect(req);
@@ -11,7 +11,7 @@ const deleteUser = async (parentValues, args, {req}, info) => {
     return {
         code: 204,
         success: true,
-        message: 'user deleted'
+        message: 'users deleted'
     };
 };
 
