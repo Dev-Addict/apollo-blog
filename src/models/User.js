@@ -15,6 +15,19 @@ const userSchema = new mongoose.Schema({
         required: [true, 'email is required'],
         unique: [true, 'email should be unique']
     },
+    username: {
+        type: String,
+        validate: {
+            validator: value => /^(?=[a-z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/.test(value),
+            message: 'username is invalid'
+        },
+        required: [true, 'username is required.'],
+        unique: [true, 'username should be unique']
+    },
+    bio: {
+        type: String,
+        max: [200, 'the max length of bio is 200 characters']
+    },
     password: {
         type: String,
         required: [true, '0x00005'],
