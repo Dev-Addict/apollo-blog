@@ -41,7 +41,7 @@ app.listen({
 
 const DB = (process.env.DATABASE_URL || '')
     .replace('<password>', process.env.DATABASE_PASSWORD)
-    .replace('<database>', process.env.DATABASE_NAME);
+    .replace('<dbname>', process.env.DATABASE_NAME);
 
 mongoose.connect(DB, {
     useNewUrlParser: true,

@@ -36,6 +36,9 @@ const typeDefs = gql`
         id: ID!
         title: String!
         body: String!
+        published: Boolean!
+        uri: String!
+        cover: String!
         author: User!
     }
 
@@ -63,11 +66,17 @@ const typeDefs = gql`
     input CreatePostInput {
         title: String!
         body: String!
+        published: Boolean
+        uri: String!
+        cover: UploadFile
     }
     
     input UpdatePostInput {
         title: String
         body: String
+        published: Boolean
+        uri: String
+        cover: UploadFile
     }
     
     type UsersQueryResponse {
