@@ -1,5 +1,8 @@
+import {ForbiddenError, AuthenticationError} from "apollo-server-express";
+
 import Context from "../../../types/Context";
 import protect from "../../../utils/auth/protect";
+import deletePostAndComments from "../../../helpers/deletePostAndComments";
 
 interface Args {
     id: string;
@@ -12,7 +15,12 @@ const deletePost = async (
 ) => {
     const {_id: author} = await protect(req, User);
 
-    await Post.findOneAndDelete({_id: id, author});
+    const post = await Post.findById(id);
+
+    if (!post) throw new ForbiddenError("post not found");
+    if (!post.author === author) throw new AuthenticationError("this is not your post");
+
+    await deletePostAndComments(id);
 
     return {
         code: 204,
