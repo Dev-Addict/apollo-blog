@@ -1,7 +1,20 @@
+import Context from "../../../types/Context";
 import signToken from "../../../utils/signToken";
+import {IUser} from "../../../../models/User";
 
-const signIn = async (parentValues, {data: {email, password}}, {models: {User}}, info) => {
-    const user = await User.findOne({email}).select('+password');
+interface Args {
+    data: {
+        email: string;
+        password: string;
+    };
+}
+
+const signIn = async (
+    parentValues: null,
+    {data: {email, password}}: Args,
+    {models: {User}}: Context
+) => {
+    const user = await User.findOne({email}).select('+password') as IUser;
 
     if (!email)
         return {

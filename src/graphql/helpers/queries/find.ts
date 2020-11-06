@@ -1,4 +1,6 @@
-const find = async (Model, page = 1, limit = 10, sort = '-createdAt', filter = {}) => {
+import {Model} from "mongoose";
+
+const find = async (Model: Model<any>, page = 1, limit = 10, sort = '-createdAt', filter = {}) => {
     const skip = (page - 1) * limit;
 
     const docs = await Model.find(

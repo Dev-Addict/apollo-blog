@@ -1,7 +1,7 @@
 import {compare, hash} from 'bcrypt';
-import mongoose from 'mongoose';
+import {Document, Schema, model} from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: [true, 'name is required']
@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         validate: {
-            validator: value => /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(value),
+            validator: (value: string) =>
+                /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+                    .test(value),
             message: 'email is invalid'
         },
         required: [true, 'email is required'],
@@ -18,7 +20,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         validate: {
-            validator: value => /^(?=[a-z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/.test(value),
+            validator: (value: string) => /^(?=[a-z0-9._]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/.test(value),
             message: 'username is invalid'
         },
         required: [true, 'username is required.'],
@@ -32,7 +34,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, '0x00005'],
         validate: {
-            validator: value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,100}$/.test(value),
+            validator: (value: string) =>
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,100}$/.test(value),
             message: '0x00006'
         },
         select: false
@@ -43,17 +46,30 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+export interface User {
+    name: string;
+    email: string;
+    username: string;
+    bio?: string;
+    password: string;
+    avatar: string;
+}
+
+userSchema.methods.correctPassword = async function (candidatePassword: string, userPassword: string) {
     return await compare(candidatePassword, userPassword);
 };
 
-userSchema.pre('save', async function (next) {
+export interface IUser extends User, Document {
+    correctPassword(candidatePassword: string, userPassword: string): Promise<boolean>,
+}
+
+userSchema.pre<IUser>('save', async function (next) {
     if (!this.isModified('password')) return next();
 
     this.password = await hash(this.password, 12);
     next();
 });
 
-const User = mongoose.model('User', userSchema);
+const User = model<IUser>('User', userSchema);
 
 export default User;

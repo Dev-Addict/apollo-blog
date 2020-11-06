@@ -1,6 +1,16 @@
+import Context from "../../../types/Context";
 import protect from "../../../utils/auth/protect";
 
-const updatePost = async (parentValues, {data, id}, {req, models: {Post, User}}, info) => {
+interface Args {
+    data: any;
+    id: string;
+}
+
+const updatePost = async (
+    parentValues: null,
+    {data, id}: Args,
+    {req, models: {Post, User}}: Context
+) => {
     const {_id: author} = await protect(req, User);
 
     const post = await Post.findOneAndUpdate({author, _id: id}, data);

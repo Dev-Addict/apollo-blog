@@ -1,13 +1,13 @@
-import mongoose from 'mongoose';
+import {Types, Schema, model, Document} from 'mongoose';
 
-const ratingSchema = new mongoose.Schema({
+const ratingSchema = new Schema({
     author: {
-        type: mongoose.Schema.ObjectId,
+        type: Types.ObjectId,
         ref: 'User',
         required: [true, 'rating should have an author']
     },
     post: {
-        type: mongoose.Schema.ObjectId,
+        type: Types.ObjectId,
         ref: 'Post',
         required: [true, 'rating should have a post']
     },
@@ -26,6 +26,15 @@ ratingSchema.index({
     unique: true
 });
 
-const Rating = mongoose.model('Rating', ratingSchema);
+export interface Rating {
+    author: Types.ObjectId;
+    post: Types.ObjectId;
+    value: number;
+}
+
+export interface IRating extends Rating, Document {
+}
+
+const Rating = model<IRating>('Rating', ratingSchema);
 
 export default Rating;

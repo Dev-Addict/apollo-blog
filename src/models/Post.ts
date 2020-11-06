@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, {Types, Schema, model, Document} from 'mongoose';
 
-const postSchema = new mongoose.Schema({
+const postSchema = new Schema({
     title: {
         type: String,
         required: [true, 'title is required']
@@ -22,12 +22,12 @@ const postSchema = new mongoose.Schema({
         default: 'default.jpg'
     },
     author: {
-        type: mongoose.Schema.ObjectId,
+        type: Types.ObjectId,
         ref: 'User',
         required: [true, 'posts must have an author']
     },
     commentOf: {
-        type: mongoose.Schema.ObjectId,
+        type: Types.ObjectId,
         ref: 'Post'
     }
 });
@@ -39,6 +39,19 @@ postSchema.index({
     unique: true
 });
 
-const Post = mongoose.model('Post', postSchema);
+export interface Post {
+    title: string;
+    body: string;
+    published: boolean;
+    uri: string;
+    cover?: string;
+    author: Types.ObjectId;
+    commentOf?: Types.ObjectId;
+}
+
+export interface IPost extends Post, Document {
+}
+
+const Post = model<IPost>('Post', postSchema);
 
 export default Post;

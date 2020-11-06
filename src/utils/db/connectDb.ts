@@ -3,8 +3,8 @@ import logger from "node-color-log";
 
 const connectDb = () => {
     const DB = (process.env.DATABASE_URL || '')
-        .replace('<password>', process.env.DATABASE_PASSWORD)
-        .replace('<dbname>', process.env.DATABASE_NAME);
+        .replace('<password>', process.env.DATABASE_PASSWORD!)
+        .replace('<dbname>', process.env.DATABASE_NAME!);
 
     mongoose.connect(DB, {
         useNewUrlParser: true,

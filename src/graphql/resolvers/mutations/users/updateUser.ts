@@ -1,8 +1,16 @@
+import Context from "../../../types/Context";
 import protect from "../../../utils/auth/protect";
 
-const updateUser = async (parentValues, {data}, {req, models: {User}}, info) => {
-    const {_id} = await protect(req, User);
+interface Args {
+    data: any;
+}
 
+const updateUser = async (
+    parentValues: null,
+    {data}: Args,
+    {req, models: {User}}: Context
+) => {
+    const {_id} = await protect(req, User);
 
     const user = await User.findByIdAndUpdate(_id, data).catch(err => {
         return {

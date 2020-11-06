@@ -4,7 +4,7 @@ const typeDefs = gql`
     scalar UploadFile
     scalar JSON
     scalar Email
-    
+
     type Query {
         users(page: Int, limit: Int, sort: String, filter: JSON): UsersQueryResponse!
         user(id: ID!): User
@@ -31,7 +31,7 @@ const typeDefs = gql`
         bio: String
         posts: [Post!]!
     }
-    
+
     type Post {
         id: ID!
         title: String!
@@ -52,19 +52,19 @@ const typeDefs = gql`
         username: String!
         bio: String
     }
-    
+
     input SignInData {
         email: Email!
         password: String!
     }
-    
+
     input UpdateUserInput {
         name: String
         username: String
         avatar: UploadFile
         bio: String
     }
-    
+
     input CreatePostInput {
         title: String!
         body: String!
@@ -73,7 +73,7 @@ const typeDefs = gql`
         cover: UploadFile
         commentOf: ID
     }
-    
+
     input UpdatePostInput {
         title: String
         body: String
@@ -81,7 +81,7 @@ const typeDefs = gql`
         uri: String
         cover: UploadFile
     }
-    
+
     type UsersQueryResponse {
         results: Int!
         page: Int!
@@ -110,13 +110,13 @@ const typeDefs = gql`
         message: String!
         user: User
     }
-    
+
     type DeleteMutationResponse {
         code: Int!
         success: Boolean!
         message: String!
     }
-    
+
     type PostMutationResponse {
         code: Int!
         success: Boolean!
