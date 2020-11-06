@@ -25,6 +25,10 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: [true, 'posts must have an author']
+    },
+    commentOf: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Post'
     }
 });
 

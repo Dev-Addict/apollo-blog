@@ -40,6 +40,8 @@ const typeDefs = gql`
         uri: String!
         cover: String!
         author: User!
+        comments: [Post!]!
+        commnetOf: Post
     }
 
     input SignUpData {
@@ -69,6 +71,7 @@ const typeDefs = gql`
         published: Boolean
         uri: String!
         cover: UploadFile
+        commentOf: ID
     }
     
     input UpdatePostInput {
