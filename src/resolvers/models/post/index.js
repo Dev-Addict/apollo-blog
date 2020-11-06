@@ -1,7 +1,9 @@
 import author from "./author";
+import commentOf from "./commentOf";
 
 const Post = {
-    author
+    author,
+    commentOf
 };
 
 export default Post;
