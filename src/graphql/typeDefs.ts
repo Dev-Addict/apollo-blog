@@ -10,6 +10,8 @@ const typeDefs = gql`
         user(id: ID!): User
         posts(page: Int, limit: Int, sort: String, filter: JSON): PostsQueryResponse!
         post(id: ID!): Post
+        ratings(page: Int, limit: Int, sort: String, filter: JSON): RatingsQueryResponse!
+        rating(id: ID!): Rating
     }
 
     type Mutation {
@@ -20,6 +22,9 @@ const typeDefs = gql`
         createPost(data: CreatePostInput!): PostMutationResponse!
         updatePost(data: UpdatePostInput!, id: ID!): PostMutationResponse!
         deletePost(id: ID!): DeleteMutationResponse!
+        createRating(data: CreateRatingInput!): RatingMutationResponse!
+        updateRating(data: UpdateRatingInput!, id: ID!): RatingMutationResponse!
+        deleteRating(id: ID!): DeleteMutationResponse!
     }
 
     type User {
@@ -42,6 +47,12 @@ const typeDefs = gql`
         author: User!
         comments: [Post!]!
         commentOf: Post
+    }
+    
+    type Rating {
+        author: User!
+        post: Post!
+        value: Float!
     }
 
     input SignUpData {
@@ -81,6 +92,15 @@ const typeDefs = gql`
         uri: String
         cover: UploadFile
     }
+    
+    input CreateRatingInput {
+        post: String
+        value: Float
+    }
+
+    input UpdateRatingInput {
+        value: Float
+    }
 
     type UsersQueryResponse {
         results: Int!
@@ -96,6 +116,13 @@ const typeDefs = gql`
         docs: [Post!]!
     }
 
+    type RatingsQueryResponse {
+        results: Int!
+        page: Int!
+        limit: Int!
+        docs: [Rating!]!
+    }
+    
     type AuthMutationResponse {
         code: Int!
         success: Boolean!
@@ -122,6 +149,13 @@ const typeDefs = gql`
         success: Boolean!
         message: String!
         post: Post
+    }
+
+    type RatingMutationResponse {
+        code: Int!
+        success: Boolean!
+        message: String!
+        rating: Rating
     }
 `;
 
