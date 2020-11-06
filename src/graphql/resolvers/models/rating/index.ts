@@ -1,7 +1,9 @@
 import author from "./author";
+import post from "./post";
 
 const Rating = {
-    author
+    author,
+    post
 };
 
 export default Rating;
