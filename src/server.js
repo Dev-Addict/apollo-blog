@@ -18,7 +18,7 @@ app.listen({
     port: Port
 }, () => {
     logger.info(`🚀 server is running at http://localhost:${Port}.`);
-    logger.info(`🚀 apollo server is running at http://localhost:${Port}${apolloServer.graphqlPath}.`);
+    logger.info(`☄️ apollo server is running at http://localhost:${Port}${apolloServer.graphqlPath}.`);
 });
 
 connectDb();
