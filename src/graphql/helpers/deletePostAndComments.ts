@@ -9,9 +9,9 @@ const deletePostAndComments = async (
 
     const comments = await Post.find({commentOf: id});
 
-    for (let i = 0; i < comments.length; i++) {
+    for (let i = 0; i < comments.length; i++)
         await deletePostAndComments(comments[i].id);
-    }
+
 };
 
 export default deletePostAndComments;
