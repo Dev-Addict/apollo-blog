@@ -1,7 +1,3 @@
-import Post from "../../../models/Post";
+const post = (parentValues, {id}, {models: {Post}}, info) => Post.findById(id);
 
-const post = async (parentValues, {id}, context, info) => {
-    return await Post.findById(id);
-};
-
-export default post
+export default post;

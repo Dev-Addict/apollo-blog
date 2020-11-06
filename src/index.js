@@ -10,6 +10,9 @@ import {ApolloServer} from 'apollo-server-express';
 import mongoose from 'mongoose';
 import logger from 'node-color-log';
 
+import User from "./models/User";
+import Post from "./models/Post";
+import Rating from "./models/Raiting";
 import typeDefs from "./typeDefs";
 import resolvers from './resolvers';
 
@@ -19,7 +22,14 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({req}) => {
-        return {req}
+        return {
+            req,
+            models: {
+                User,
+                Post,
+                Rating
+            }
+        };
     }
 });
 

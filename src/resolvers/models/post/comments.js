@@ -1,5 +1,3 @@
-import Post from "../../../models/Post";
-
-const comments = ({_id}, args, context, info) => Post.find({commentOf: _id});
+const comments = ({_id}, args, {models: {Post}}, info) => Post.find({commentOf: _id});
 
 export default comments;

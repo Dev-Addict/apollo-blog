@@ -1,8 +1,7 @@
-import User from "../../../models/User";
 import protect from "../../../utils/auth/protect";
 
-const updateUser = async (parentValues, {data}, {req}, info) => {
-    const {_id} = await protect(req);
+const updateUser = async (parentValues, {data}, {req, models: {User}}, info) => {
+    const {_id} = await protect(req, User);
 
 
     const user = await User.findByIdAndUpdate(_id, data).catch(err => {

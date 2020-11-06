@@ -41,7 +41,7 @@ const typeDefs = gql`
         cover: String!
         author: User!
         comments: [Post!]!
-        commnetOf: Post
+        commentOf: Post
     }
 
     input SignUpData {

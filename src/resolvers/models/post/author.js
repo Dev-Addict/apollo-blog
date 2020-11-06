@@ -1,5 +1,3 @@
-import User from "../../../models/User";
-
-const author = ({author}, args, context, info) => User.findById(author);
+const author = ({author}, args, {models: {User}}, info) => User.findById(author);
 
 export default author;

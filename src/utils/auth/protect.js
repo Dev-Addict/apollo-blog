@@ -1,9 +1,7 @@
 import {AuthenticationError} from "apollo-server-express";
 import {verify} from "jsonwebtoken";
 
-import User from "../../models/User";
-
-const protect = async ({headers: {authorization: bearerToken}}) => {
+const protect = async ({headers: {authorization: bearerToken}}, User) => {
     if (!bearerToken) throw new AuthenticationError('can\'t find the token.');
     if (!bearerToken.startsWith('Bearer ')) throw new AuthenticationError('token is invalid.');
     const token = bearerToken.split(' ')[1];

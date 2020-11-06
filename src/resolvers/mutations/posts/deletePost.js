@@ -1,8 +1,7 @@
-import Post from "../../../models/Post";
 import protect from "../../../utils/auth/protect";
 
-const deletePost = async (parentValues, {id}, {req}, info) => {
-    const {_id: author} = await protect(req);
+const deletePost = async (parentValues, {id}, {req, models: {Post, User}}, info) => {
+    const {_id: author} = await protect(req, User);
 
     await Post.findOneAndDelete({_id: id, author});
 
