@@ -47,12 +47,19 @@ const typeDefs = gql`
         author: User!
         comments: [Post!]!
         commentOf: Post
+        rating: PostRating!
     }
     
     type Rating {
         author: User!
         post: Post!
         value: Float!
+    }
+    
+    type PostRating {
+        id: ID!
+        value: Float!
+        amount: Int!
     }
 
     input SignUpData {
