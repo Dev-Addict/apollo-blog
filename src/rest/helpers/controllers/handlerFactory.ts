@@ -31,3 +31,26 @@ export const GetAll = <T extends Document>(model: Model<T>) =>
 
         return descriptor;
     };
+
+interface HavePassword extends Document{
+    password?: string;
+}
+
+export const CreateOne = <T extends HavePassword>(model: Model<T>) =>
+    function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.value = catchRequest(
+            async (req: Request, res: Response) => {
+                const doc = await model.create(req.body);
+
+                doc.password = undefined;
+                res.status(201).json({
+                    status: 'success',
+                    data: {
+                        doc
+                    }
+                });
+            }
+        );
+
+        return descriptor;
+    };
