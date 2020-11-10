@@ -81,7 +81,7 @@ export const GetOne = <T extends Document>(model: Model<T>, populateOptions?: Mo
         return descriptor;
     };
 
-export const UpdateOne = <T extends Document>(model: Model<T>, populateOptions?: ModelPopulateOptions) =>
+export const UpdateOne = <T extends Document>(model: Model<T>) =>
     function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
         descriptor.value = catchRequest(
             async (req: Request, res: Response) => {
@@ -98,6 +98,24 @@ export const UpdateOne = <T extends Document>(model: Model<T>, populateOptions?:
                     data: {
                         doc
                     }
+                });
+            }
+        );
+
+        return descriptor;
+    };
+
+export const DeleteOne = <T extends Document>(model: Model<T>) =>
+    function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.value = catchRequest(
+            async (req: Request, res: Response) => {
+                const doc = await model.findByIdAndDelete(req.params.id);
+                if (!doc)
+                    throw new AppError('0xE00008', 404);
+
+                res.status(204).json({
+                    status: 'success',
+                    data: null
                 });
             }
         );
