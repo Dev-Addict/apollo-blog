@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {Controller, Get, Use} from 'decopress';
 
 import UserController from "./UserController";
+import PostController from "./PostController";
 
 @Controller('/v1', {
     mergeParams: true
@@ -19,6 +20,11 @@ class V1Controller {
     @Use()
     UserController() {
         return new UserController();
+    }
+
+    @Use()
+    PostController() {
+        return new PostController();
     }
 }
 
