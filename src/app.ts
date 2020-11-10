@@ -1,8 +1,9 @@
 import express from 'express';
+import {setRoutes} from 'decopress';
 import {json, urlencoded} from "body-parser";
 import morgan from "morgan";
 
-import APIRouter from "./rest/routes/APIRouter";
+import APIController from "./rest/controllers/APIController";
 
 const app = express();
 
@@ -19,6 +20,6 @@ app.use(urlencoded({
 }));
 app.use(morgan('dev'));
 
-app.use('/api', APIRouter);
+setRoutes(new APIController(), app);
 
 export default app;
