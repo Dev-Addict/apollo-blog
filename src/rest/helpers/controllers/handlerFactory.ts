@@ -80,3 +80,27 @@ export const GetOne = <T extends Document>(model: Model<T>, populateOptions?: Mo
 
         return descriptor;
     };
+
+export const UpdateOne = <T extends Document>(model: Model<T>, populateOptions?: ModelPopulateOptions) =>
+    function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.value = catchRequest(
+            async (req: Request, res: Response) => {
+                const doc = await model.findByIdAndUpdate(req.params.id, req.body, {
+                    new: true,
+                    runValidators: true
+                });
+
+                if (!doc)
+                    throw new AppError('0xE00008', 404);
+
+                res.status(200).json({
+                    status: 'success',
+                    data: {
+                        doc
+                    }
+                });
+            }
+        );
+
+        return descriptor;
+    };
